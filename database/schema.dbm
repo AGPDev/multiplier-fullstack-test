@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.3-beta1" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="6"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="user" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="240" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="deleted" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="user_pk" type="pk-constr" table="public.&quot;user&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="email_uq" type="uq-constr" table="public.&quot;user&quot;">
+		<columns names="email" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="category" layer="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="60"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="deleted" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="category_pk" type="pk-constr" table="public.category">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="product" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="340"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="category_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="price">
+		<type name="float" length="0"/>
+	</column>
+	<column name="deleted" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="product_pk" type="pk-constr" table="public.product">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="log" layer="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="240" y="400"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="user_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="action" not-null="true">
+		<type name="character varying" length="0"/>
+	</column>
+	<column name="before" not-null="true">
+		<type name="json" length="0"/>
+	</column>
+	<column name="after" not-null="true">
+		<type name="json" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="log_pk" type="pk-constr" table="public.log">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="order" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="220" y="660"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="products" not-null="true">
+		<type name="json" length="0"/>
+	</column>
+	<column name="total_products" not-null="true" default-value="0">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="total" not-null="true" default-value="0">
+		<type name="float" length="0"/>
+	</column>
+	<column name="deleted" not-null="true" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="updated_at" not-null="true" default-value="current_timestamp">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<column name="deleted_at">
+		<type name="timestamp with time zone" length="0" with-timezone="true"/>
+	</column>
+	<constraint name="order_pk" type="pk-constr" table="public.&quot;order&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="product_category_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.category" table="public.product">
+	<columns names="category_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="log_user_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;user&quot;" table="public.log">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_product_category" type="relfk" layer="0"
+	 src-table="public.product"
+	 dst-table="public.category" reference-fk="product_category_fk"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-8.18859" y="2.72899"/>
+	</label>
+</relationship>
+
+<relationship name="rel_log_user" type="relfk" layer="0"
+	 src-table="public.log"
+	 dst-table="public.&quot;user&quot;" reference-fk="log_user_fk"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-6.54791" y="-5.17101"/>
+	</label>
+</relationship>
+
+</dbmodel>
