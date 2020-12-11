@@ -21,6 +21,7 @@ module.exports = function (/* ctx */) {
     boot: [
 
       'axios',
+      'filters',
       'vee-validate'
     ],
 
