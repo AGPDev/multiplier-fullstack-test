@@ -8,15 +8,15 @@ return [
 
     'guards' => [
         'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
+            'driver' => 'jwt',
+            'provider' => 'users'
         ],
     ],
 
     'providers' => [
         'users' => [
-            'driver' => 'jwt',
-            'model' => App\User::class,
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
     ],
 ];

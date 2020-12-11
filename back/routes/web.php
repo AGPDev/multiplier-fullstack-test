@@ -16,3 +16,13 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(
+    [
+        'namespace' => 'V1',
+        'prefix' => 'v1',
+    ],
+    function () use ($router) {
+        require 'v1/v1.php';
+    }
+);
