@@ -10,7 +10,7 @@ export default ({ store }) => {
     const token = store.state.token
 
     if (token) {
-      config.headers.common.Authorization = 'Bearer ' + token
+      config.headers.common.Authorization = 'bearer ' + token
     }
 
     // Do something before request is sent
