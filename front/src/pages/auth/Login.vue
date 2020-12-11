@@ -3,7 +3,7 @@ import AppForm from 'components/AppForm.vue'
 import AppInput from 'components/AppInput.vue'
 
 export default {
-  name: 'Login',
+  name: 'LoginPage',
 
   components: {
     AppForm,
@@ -54,10 +54,6 @@ export default {
             this.formData.password = null
             this.$refs.inputPassword.focus()
           }
-        })
-        .finally(() => {
-          this.loading = false
-          this.$refs.appForm.reset()
         })
 
       this.loading = false
