@@ -14,7 +14,7 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
+export default function ({ store }) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -24,6 +24,23 @@ export default function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
+  })
+
+  Router.beforeEach((to, from, next) => {
+    const isAuthenticated = store.state.isAuthenticated
+
+    if (to.path !== '/login') {
+      if (isAuthenticated) {
+        next()
+      } else {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+        })
+      }
+    } else {
+      next()
+    }
   })
 
   return Router
