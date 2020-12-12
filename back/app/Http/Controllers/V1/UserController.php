@@ -87,10 +87,15 @@ class UserController extends Controller
             $request,
             [
                 'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id . ',id',
+                'password' => '',
+                'current_password' => 'required|password:api',
             ]
         );
+
+        if ($attributes['password'] == '') {
+            $attributes['password'] = $attributes['current_password'];
+        }
 
         $attributes['password'] = Hash::make($attributes['password']);
 
