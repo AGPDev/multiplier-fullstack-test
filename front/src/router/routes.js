@@ -16,7 +16,22 @@ const routes = [
       {
         path: '',
         component: () => import('pages/Index.vue')
+      },
+      {
+        path: 'usuarios',
+        component: () => import('pages/users/UserIndex.vue'),
+        children: [
+          {
+            path: 'add',
+            component: () => import('pages/users/UserAdd.vue')
+          },
+          {
+            path: 'edit/:id',
+            component: () => import('pages/users/UserEdit.vue')
+          }
+        ]
       }
+
     ]
   },
   {
