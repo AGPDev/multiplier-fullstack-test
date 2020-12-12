@@ -9,6 +9,7 @@ $router->group(
         'middleware' => 'auth',
     ],
     function () use ($router) {
+        include 'category.php';
         include 'user.php';
 
         $router->group(
