@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import { Loading } from 'quasar'
 
-export default ({ store }) => {
+export default ({ redirect, store, urlPath }) => {
   axios.defaults.timeout = 5000
   axios.defaults.baseURL = '/api'
 
@@ -25,6 +25,9 @@ export default ({ store }) => {
   }, function (error) {
     if (error.response.status === 401) {
       store.commit('isAuthenticated', false)
+      if (!urlPath.startsWith('/login')) {
+        redirect({ path: '/login' })
+      }
     }
 
     if (error.response.status === 504) {
