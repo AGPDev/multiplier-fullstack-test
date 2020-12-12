@@ -18,6 +18,20 @@ const routes = [
         component: () => import('pages/Index.vue')
       },
       {
+        path: 'categorias',
+        component: () => import('pages/categories/CategoryIndex.vue'),
+        children: [
+          {
+            path: 'add',
+            component: () => import('pages/categories/CategoryAdd.vue')
+          },
+          {
+            path: 'edit/:id',
+            component: () => import('pages/categories/CategoryEdit.vue')
+          }
+        ]
+      },
+      {
         path: 'usuarios',
         component: () => import('pages/users/UserIndex.vue'),
         children: [
