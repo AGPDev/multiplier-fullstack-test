@@ -8,3 +8,11 @@ Vue.filter('formatDate', function (val) {
 
   return date.formatDate(val, 'DD/MM/YYYY HH:mm')
 })
+
+Vue.filter('formatPrice', function (val) {
+  if (!val) {
+    return ''
+  }
+
+  return parseFloat(val).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+})
