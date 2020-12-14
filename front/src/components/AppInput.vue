@@ -26,6 +26,12 @@ export default {
     disable: {
       type: Boolean
     },
+    filled: {
+      type: Boolean
+    },
+    fillMask: {
+      type: String
+    },
     inputClass: {
       type: String,
       default: undefined
@@ -38,6 +44,12 @@ export default {
       type: Boolean
     },
     outlined: {
+      type: Boolean
+    },
+    mask: {
+      type: String
+    },
+    reverseFillMask: {
       type: Boolean
     },
     type: {
@@ -107,10 +119,14 @@ export default {
       :disable="disable"
       :error="failed"
       :error-message="errors && errors[0]"
+      :filled="filled"
+      :fill-mask="fillMask"
       :input-class="inputClass"
       :label="label"
       :loading="loading"
+      :mask="mask"
       :outlined="outlined"
+      :reverse-fill-mask="reverseFillMask"
       :success="passed"
       :type="type"
       :value="value"
@@ -118,6 +134,6 @@ export default {
     )
       slot
 
-      template(v-slot:append)
+      template(#append)
         slot(name="append")
 </template>
