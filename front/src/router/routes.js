@@ -32,6 +32,20 @@ const routes = [
         ]
       },
       {
+        path: 'produtos',
+        component: () => import('pages/products/ProductIndex.vue'),
+        children: [
+          {
+            path: 'add',
+            component: () => import('pages/products/ProductAdd.vue')
+          },
+          {
+            path: 'edit/:id',
+            component: () => import('pages/products/ProductEdit.vue')
+          }
+        ]
+      },
+      {
         path: 'usuarios',
         component: () => import('pages/users/UserIndex.vue'),
         children: [
