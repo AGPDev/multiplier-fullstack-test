@@ -3,40 +3,40 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
 
     /**
-     *  The category model instance.
+     *  The product model instance.
      */
-    private $category;
+    private $product;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(Category $category)
+    public function __construct(Product $product)
     {
         $this->middleware('auth');
-        $this->category = $category;
+        $this->product = $product;
     }
 
     /**
-     * Load categories list.
+     * Load products list.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return $this->category->all();
+        return $this->product->all()->load('category');
     }
 
     /**
-     * Load category by id.
+     * Load product by id.
      *
      * @param string $id
      *
@@ -44,11 +44,11 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        return $this->category->findOrFail($id);
+        return $this->product->findOrFail($id)->load('category');
     }
 
     /**
-     * Store new category.
+     * Store new product.
      *
      * @param  \Illuminate\Http\Request  $request
      *
@@ -59,14 +59,18 @@ class CategoryController extends Controller
     {
         $attributes = $this->validate(
             $request,
-            ['name' => 'required']
+            [
+                'name' => 'required',
+                'category_id' => '',
+                'price' => ''
+            ],
         );
 
-        return $this->category->create($attributes);
+        return $this->product->create($attributes);
     }
 
     /**
-     * Update category.
+     * Update product.
      *
      * @param string $id
      * @param  \Illuminate\Http\Request  $request
@@ -78,16 +82,20 @@ class CategoryController extends Controller
     {
         $attributes = $this->validate(
             $request,
-            ['name' => 'required']
+            [
+                'name' => 'required',
+                'category_id' => '',
+                'price' => ''
+            ],
         );
 
-        $category = $this->category->findOrFail($id);
+        $product = $this->product->findOrFail($id);
 
-        return $category->update($attributes);
+        return $product->update($attributes);
     }
 
     /**
-     * Destroy category.
+     * Destroy product.
      *
      * @param string $id
      *
@@ -95,8 +103,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        $category = $this->category->findOrFail($id);
+        $product = $this->product->findOrFail($id);
 
-        return $category->delete();
+        return $product->delete();
     }
 }
