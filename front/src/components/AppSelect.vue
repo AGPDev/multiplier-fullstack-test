@@ -143,4 +143,12 @@ export default {
       :value="value"
       @input="v => $emit('input', v)"
     )
+      slot
+
+      template(#selected)
+        slot(
+          name="selected"
+          :selected-string="($refs.input && $refs.input.selectedString) || ''"
+        )
+          | {{ ($refs.input && $refs.input.selectedString) || '' }}
 </template>
