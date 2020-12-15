@@ -407,7 +407,7 @@ export default {
         div(class="q-pb-md text-center")
           q-btn(
             no-caps
-            unelevated
+            push
             color="indigo-14"
             icon="mdi-cart-check"
             label="Finalizar Pedido"

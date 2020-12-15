@@ -147,6 +147,7 @@ export default {
           template(#top-right)
             q-btn(
               no-caps
+              unelevated
               color="teal"
               label="Adicionar"
               @click="$router.push('/categorias/add')"
