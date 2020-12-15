@@ -11,6 +11,7 @@ $router->group(
     function () use ($router) {
         include 'category.php';
         include 'product.php';
+        include 'order.php';
         include 'user.php';
 
         $router->group(
