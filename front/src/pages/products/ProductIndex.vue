@@ -243,14 +243,3 @@ export default {
                     :key="props.row.id"
                   )
 </template>
-
-<style lang="stylus">
-.sticky-action-column
-  th:last-child,
-  td:last-child
-    background #fff
-    position sticky
-    right 0
-    z-index 1
-
-</style>
