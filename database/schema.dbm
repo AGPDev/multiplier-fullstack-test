@@ -11,7 +11,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
-<table name="user" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="users" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="240" y="40"/>
@@ -27,9 +27,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="password" not-null="true">
 		<type name="character varying" length="0"/>
 	</column>
-	<column name="deleted" not-null="true" default-value="false">
-		<type name="boolean" length="0"/>
-	</column>
 	<column name="created_at" not-null="true" default-value="current_timestamp">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
@@ -39,15 +36,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="deleted_at">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
-	<constraint name="user_pk" type="pk-constr" table="public.&quot;user&quot;">
+	<constraint name="users_pkey" type="pk-constr" table="public.users">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
-	<constraint name="email_uq" type="uq-constr" table="public.&quot;user&quot;">
+	<constraint name="users_email_unique" type="uq-constr" table="public.users">
 		<columns names="email" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="category" layer="0" collapse-mode="2" max-obj-count="7" z-value="0">
+<table name="categories" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="680" y="60"/>
@@ -57,9 +54,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="name" not-null="true">
 		<type name="character varying" length="0"/>
 	</column>
-	<column name="deleted" not-null="true" default-value="false">
-		<type name="boolean" length="0"/>
-	</column>
 	<column name="created_at" not-null="true" default-value="current_timestamp">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
@@ -69,12 +63,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="deleted_at">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
-	<constraint name="category_pk" type="pk-constr" table="public.category">
+	<constraint name="categories_pkey" type="pk-constr" table="public.categories">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="product" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="products" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="680" y="340"/>
@@ -90,9 +84,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="price">
 		<type name="float" length="0"/>
 	</column>
-	<column name="deleted" not-null="true" default-value="false">
-		<type name="boolean" length="0"/>
-	</column>
 	<column name="created_at" not-null="true" default-value="current_timestamp">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
@@ -102,12 +93,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="deleted_at">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
-	<constraint name="product_pk" type="pk-constr" table="public.product">
+	<constraint name="products_pkey" type="pk-constr" table="public.products">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="log" layer="0" collapse-mode="2" max-obj-count="7" z-value="0">
+<table name="logs" layer="0" collapse-mode="2" max-obj-count="7" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
 	<position x="240" y="400"/>
@@ -121,37 +112,34 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="character varying" length="0"/>
 	</column>
 	<column name="before" not-null="true">
-		<type name="json" length="0"/>
+		<type name="jsonb" length="0"/>
 	</column>
 	<column name="after" not-null="true">
-		<type name="json" length="0"/>
+		<type name="jsonb" length="0"/>
 	</column>
 	<column name="created_at" not-null="true" default-value="current_timestamp">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
-	<constraint name="log_pk" type="pk-constr" table="public.log">
+	<constraint name="logs_pkey" type="pk-constr" table="public.logs">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="order" layer="0" collapse-mode="2" max-obj-count="9" z-value="0">
+<table name="orders" layer="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="220" y="660"/>
+	<position x="660" y="660"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
 	<column name="products" not-null="true">
-		<type name="json" length="0"/>
+		<type name="jsonb" length="0"/>
 	</column>
-	<column name="total_products" not-null="true" default-value="0">
+	<column name="qty_products" not-null="true" default-value="0">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="total" not-null="true" default-value="0">
 		<type name="float" length="0"/>
-	</column>
-	<column name="deleted" not-null="true" default-value="false">
-		<type name="boolean" length="0"/>
 	</column>
 	<column name="created_at" not-null="true" default-value="current_timestamp">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
@@ -162,38 +150,38 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="deleted_at">
 		<type name="timestamp with time zone" length="0" with-timezone="true"/>
 	</column>
-	<constraint name="order_pk" type="pk-constr" table="public.&quot;order&quot;">
+	<constraint name="orders_pkey" type="pk-constr" table="public.orders">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<constraint name="product_category_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.category" table="public.product">
+<constraint name="products_categories_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.categories" table="public.products">
 	<columns names="category_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="log_user_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;user&quot;" table="public.log">
+<constraint name="logs_users_fkey" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.users" table="public.logs">
 	<columns names="user_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<relationship name="rel_product_category" type="relfk" layer="0"
-	 src-table="public.product"
-	 dst-table="public.category" reference-fk="product_category_fk"
+<relationship name="rel_products_categories" type="relfk" layer="0"
+	 src-table="public.products"
+	 dst-table="public.categories" reference-fk="products_categories_fkey"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="-8.18859" y="2.72899"/>
+		<position x="-8.19186" y="2.72899"/>
 	</label>
 </relationship>
 
-<relationship name="rel_log_user" type="relfk" layer="0"
-	 src-table="public.log"
-	 dst-table="public.&quot;user&quot;" reference-fk="log_user_fk"
+<relationship name="rel_logs_users" type="relfk" layer="0"
+	 src-table="public.logs"
+	 dst-table="public.users" reference-fk="logs_users_fkey"
 	 src-required="false" dst-required="true">
 	<label ref-type="name-label">
-		<position x="-6.54791" y="-5.17101"/>
+		<position x="-9.18235" y="-5.17101"/>
 	</label>
 </relationship>
 
