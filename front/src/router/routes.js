@@ -46,6 +46,14 @@ const routes = [
         ]
       },
       {
+        path: 'pedidos',
+        component: () => import('pages/orders/OrderIndex.vue')
+      },
+      {
+        path: '/pedidos/carrinho',
+        component: () => import('pages/Cart.vue')
+      },
+      {
         path: 'usuarios',
         component: () => import('pages/users/UserIndex.vue'),
         children: [
