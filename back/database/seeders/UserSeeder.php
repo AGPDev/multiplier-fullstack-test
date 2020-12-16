@@ -23,6 +23,14 @@ class UserSeeder extends Seeder
             ]
         );
 
+        User::create(
+            [
+                'name' => 'Fulano Beltrano',
+                'email' => 'exemplo@multiplier.com.br',
+                'password' => Hash::make('teste123'),
+            ]
+        );
+
         User::factory()->times(10)->create();
     }
 }
